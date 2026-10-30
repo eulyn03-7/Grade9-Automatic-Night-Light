@@ -1,1 +1,24 @@
-https://streamlit.io/playground?example=blank&code=H4sIAAAAAAAAA11PUUvDMBB-z6846ksKo3QbUygoVOd0bCpsexMZocnaQJqU5IaC-N-9pOqDR3Jcvnz33X26H5xHCOiV6I1GEIEeTI_wIKwkgM4gGQtYoEajeFaf0fUCdQPPuu0Qtik_OavReW3bLGfMJOya1IpgtFSeM6DIaiuMa2GvbHAedkrI2DBJn-UEpuVsPoF5WbI8TewVet3w7D8fkj5xLuBQ7zcwq-CuE7ZVgF28XoXOGQnoYEFi-jQ2wA1clmWVppH6u_CW5Hi2rHebCrb3S3h5pu2VCeqPFM5No0Lg2e1u_fB4-KGtVtGlFCjI5CCLJVUrL3rFP0ejv6tW8Ep2JnENSgtKV4vyjX2N_qLAKbXFKo-Q0VYdm054TFgRFB61leqD05h1Knx0yqekl1Mw9g2gkIoMxwEAAA
+import streamlit as st
+import pandas as pd
+
+st.title("Automatic Night Light Monitoring")
+
+light = st.slider(
+    "Analog Sensor Reading",
+    0, 1023, 300
+)
+
+st.metric("Sensor Reading", light)
+
+# TASK 2: Change the threshold to 500
+if light > 600:
+    st.warning("DARK: LED ON")
+else:
+    st.success("BRIGHT: LED OFF")
+
+data = pd.DataFrame({
+    "Reading": [300, 500, 550, 750]
+})
+
+st.dataframe(data)
+st.line_chart(data.set_index(pd.Index(range(1, 5))))
