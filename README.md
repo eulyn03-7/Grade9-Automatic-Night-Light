@@ -1,24 +1,34 @@
+# Grade9-Automatic-Night-Light
 
-#define LDRPIN A0
-#define LEDPIN 8
+Automatic Night Light system using Arduino Uno and a photoresistor (LDR).
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(LEDPIN, OUTPUT);
-}
+## Input – Process – Output
 
-void loop() {
-  int lightValue = analogRead(LDRPIN);
+| Stage     | Description                                      |
+|-----------|--------------------------------------------------|
+| **Input** | Analog light level from photoresistor (AO → A0) |
+| **Process** | `analogRead(A0)` → if value > 600 → dark       |
+| **Output** | LED on pin 8 turns ON when dark, OFF when bright |
 
-  Serial.print("Light Sensor Reading: ");
-  Serial.println(lightValue);
+## How it works
+- The photoresistor resistance increases in the dark.
+- In Wokwi this produces a higher analog reading when it is dark.
+- Threshold of **600** was used.
+- LED turns **ON** only when the reading is greater than 600.
 
-  // TASK 1: Change the threshold to 500
-  if (lightValue > 600) {
-    digitalWrite(LEDPIN, HIGH);
-  } else {
-    digitalWrite(LEDPIN, LOW);
-  }
+## Circuit Connections
+- LDR VCC → 5V  
+- LDR GND → GND  
+- LDR AO  → A0  
+- LED anode (+) → Pin 8 (through 220Ω resistor)  
+- LED cathode (−) → GND  
 
-  delay(500);
-}
+## Wokwi Simulation
+[Open the simulation here](PASTE_YOUR_WOKWI_LINK_HERE)
+
+## Test Readings
+| Analog Reading | Expected LED | Observed LED |
+|----------------|--------------|--------------|
+| 300            | OFF          | OFF          |
+| 600            | OFF          | OFF          |
+| 750            | ON           | ON           |
