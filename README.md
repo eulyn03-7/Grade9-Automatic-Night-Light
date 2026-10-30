@@ -24,7 +24,7 @@ Automatic Night Light system using Arduino Uno and a photoresistor (LDR).
 - LED cathode (−) → GND  
 
 ## Wokwi Simulation
-[Open the simulation here]https://wokwi.com/projects/479265121665105921
+[Open the simulation here](https://wokwi.com/projects/479265121665105921)
 
 ## Test Readings
 | Analog Reading | Expected LED | Observed LED |
